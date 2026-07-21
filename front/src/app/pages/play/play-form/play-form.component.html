@@ -1,0 +1,66 @@
+<div class="header">
+  <div>
+    <h1>{{ isEdit ? 'Editar obra' : 'Nueva obra' }}</h1>
+    <p>Complete los datos obligatorios</p>
+  </div>
+</div>
+
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="save()">
+      <mat-form-field appearance="outline">
+        <mat-label>Título</mat-label>
+        <input matInput formControlName="title" maxlength="150">
+        @if (form.controls.title.hasError('required')) {
+          <mat-error>El título es obligatorio</mat-error>
+        }
+        @if (form.controls.title.hasError('pattern')) {
+          <mat-error>Formato de título inválido</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput rows="5" formControlName="description" maxlength="1000"></textarea>
+        @if (form.controls.description.hasError('required')) {
+          <mat-error>La descripción es obligatoria</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Género</mat-label>
+        <mat-select formControlName="genreId">
+          @for (genre of genres; track genre.id) {
+            <mat-option [value]="genre.id">{{ genre.description }}</mat-option>
+          }
+        </mat-select>
+        @if (form.controls.genreId.hasError('required')) {
+          <mat-error>El género es obligatorio</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Duración en minutos</mat-label>
+        <input matInput type="number" formControlName="durationMinutes">
+        @if (form.controls.durationMinutes.hasError('required')) {
+          <mat-error>La duración es obligatoria</mat-error>
+        }
+        @if (form.controls.durationMinutes.hasError('min')) {
+          <mat-error>Ingrese un número mayor a cero</mat-error>
+        }
+      </mat-form-field>
+
+      @if (error) {
+        <p class="error">{{ error }}</p>
+      }
+
+      <div class="buttons">
+        <a mat-button routerLink="/admin/plays">Cancelar</a>
+        <button mat-flat-button color="primary" type="submit" [disabled]="loading">
+          <mat-icon>save</mat-icon>
+          Guardar
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
