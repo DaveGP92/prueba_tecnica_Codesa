@@ -1,0 +1,23 @@
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eef2f6;
+}
+
+.login-card {
+  width: 360px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.error {
+  color: #b00020;
+  margin: 0 0 4px;
+}

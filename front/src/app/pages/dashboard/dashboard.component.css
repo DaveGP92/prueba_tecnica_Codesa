@@ -1,0 +1,14 @@
+h1 {
+  margin: 0;
+}
+
+.welcome {
+  margin: 8px 0 22px;
+  color: #555;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 16px;
+}
