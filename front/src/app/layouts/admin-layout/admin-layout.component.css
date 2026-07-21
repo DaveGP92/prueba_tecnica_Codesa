@@ -1,0 +1,17 @@
+.logo {
+  font-weight: 600;
+  margin-right: 18px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.user {
+  font-size: 14px;
+  margin-right: 12px;
+}
+
+.page {
+  padding: 24px;
+}

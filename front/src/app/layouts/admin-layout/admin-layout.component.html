@@ -1,0 +1,18 @@
+<mat-toolbar color="primary">
+  <span class="logo">Teatro Admin</span>
+  <a mat-button routerLink="/admin">Dashboard</a>
+  <a mat-button routerLink="/admin/plays">Obras</a>
+  <a mat-button routerLink="/admin/genres">Géneros</a>
+  <a mat-button routerLink="/admin/schedules">Funciones</a>
+  <a mat-button routerLink="/admin/tickets">Compras</a>
+  <span class="spacer"></span>
+  <span class="user">{{ authService.getUserName() }}</span>
+  <button mat-button type="button" (click)="logout()">
+    <mat-icon>logout</mat-icon>
+    Salir
+  </button>
+</mat-toolbar>
+
+<main class="page">
+  <router-outlet></router-outlet>
+</main>

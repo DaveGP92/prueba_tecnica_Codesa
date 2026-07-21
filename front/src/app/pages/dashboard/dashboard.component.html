@@ -1,0 +1,48 @@
+<h1>Dashboard</h1>
+<p class="welcome">Bienvenido {{ authService.getUserName() }}. Rol: {{ authService.getRole() }}</p>
+
+<div class="cards">
+  <mat-card>
+    <mat-card-header>
+      <mat-icon mat-card-avatar>theater_comedy</mat-icon>
+      <mat-card-title>Obras</mat-card-title>
+      <mat-card-subtitle>Gestión de obras teatrales</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
+      <a mat-flat-button color="primary" routerLink="/admin/plays">Ver obras</a>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-header>
+      <mat-icon mat-card-avatar>confirmation_number</mat-icon>
+      <mat-card-title>Compras</mat-card-title>
+      <mat-card-subtitle>Gestión de boletas compradas</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
+      <a mat-flat-button color="primary" routerLink="/admin/tickets">Ver compras</a>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-header>
+      <mat-icon mat-card-avatar>category</mat-icon>
+      <mat-card-title>Géneros</mat-card-title>
+      <mat-card-subtitle>Gestión de géneros teatrales</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
+      <a mat-flat-button color="primary" routerLink="/admin/genres">Ver géneros</a>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-header>
+      <mat-icon mat-card-avatar>event</mat-icon>
+      <mat-card-title>Funciones</mat-card-title>
+      <mat-card-subtitle>Gestión de funciones programadas</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
+      <a mat-flat-button color="primary" routerLink="/admin/schedules">Ver funciones</a>
+    </mat-card-actions>
+  </mat-card>
+</div>
