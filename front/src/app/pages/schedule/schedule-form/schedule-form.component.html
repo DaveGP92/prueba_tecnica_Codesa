@@ -1,0 +1,76 @@
+<div class="header">
+  <div>
+    <h1>{{ isEdit ? 'Editar función' : 'Nueva función' }}</h1>
+    <p>Complete los datos obligatorios</p>
+  </div>
+</div>
+
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="save()">
+      <mat-form-field appearance="outline">
+        <mat-label>Obra</mat-label>
+        <mat-select formControlName="playId">
+          @for (play of plays; track play.id) {
+            <mat-option [value]="play.id">{{ play.title }}</mat-option>
+          }
+        </mat-select>
+        @if (form.controls.playId.hasError('required')) {
+          <mat-error>La obra es obligatoria</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha</mat-label>
+        <input matInput type="date" formControlName="dateTime">
+        @if (form.controls.dateTime.hasError('required')) {
+          <mat-error>La fecha es obligatoria</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Sala</mat-label>
+        <input matInput formControlName="room" maxlength="100">
+        @if (form.controls.room.hasError('required')) {
+          <mat-error>La sala es obligatoria</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Total de asientos</mat-label>
+        <input matInput formControlName="totalSeats">
+        @if (form.controls.totalSeats.hasError('required')) {
+          <mat-error>El total de asientos es obligatorio</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Asientos disponibles</mat-label>
+        <input matInput formControlName="availableSeats">
+        @if (form.controls.availableSeats.hasError('required')) {
+          <mat-error>Los asientos disponibles son obligatorios</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Precio base</mat-label>
+        <input matInput formControlName="basePrice">
+        @if (form.controls.basePrice.hasError('required')) {
+          <mat-error>El precio base es obligatorio</mat-error>
+        }
+      </mat-form-field>
+
+      @if (error) {
+        <p class="error">{{ error }}</p>
+      }
+
+      <div class="buttons">
+        <a mat-button routerLink="/admin/schedules">Cancelar</a>
+        <button mat-flat-button color="primary" type="submit" [disabled]="loading">
+          <mat-icon>save</mat-icon>
+          Guardar
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

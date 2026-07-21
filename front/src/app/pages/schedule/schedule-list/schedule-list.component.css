@@ -1,0 +1,35 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+h1 {
+  margin: 0;
+}
+
+.header p {
+  margin: 6px 0 0;
+  color: #666;
+}
+
+.table-box {
+  background: white;
+  border: 1px solid #ddd;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+
+.loading {
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.error {
+  color: #b00020;
+}
