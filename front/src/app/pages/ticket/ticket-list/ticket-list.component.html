@@ -1,0 +1,75 @@
+<div class="header">
+  <div>
+    <h1>Compras</h1>
+    <p>Listado de boletas compradas</p>
+  </div>
+  <a mat-flat-button color="primary" routerLink="/admin/tickets/new">
+    <mat-icon>add</mat-icon>
+    Nueva compra
+  </a>
+</div>
+
+@if (error()) {
+  <p class="error">{{ error() }}</p>
+}
+
+@if (loading()) {
+  <div class="loading"><mat-spinner diameter="42"></mat-spinner></div>
+} @else {
+  <div class="table-box">
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let item">{{ item.id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="scheduleId">
+        <th mat-header-cell *matHeaderCellDef>Función</th>
+        <td mat-cell *matCellDef="let item">{{ item.scheduleId }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="buyer">
+        <th mat-header-cell *matHeaderCellDef>Comprador</th>
+        <td mat-cell *matCellDef="let item">{{ getBuyer(item) }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef>Cantidad</th>
+        <td mat-cell *matCellDef="let item">{{ item.quantity }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="totalPrice">
+        <th mat-header-cell *matHeaderCellDef>Total</th>
+        <td mat-cell *matCellDef="let item">${{ item.totalPrice }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="active">
+        <th mat-header-cell *matHeaderCellDef>Activo</th>
+        <td mat-cell *matCellDef="let item">{{ item.active ? 'Si' : 'No' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let item">
+          <a mat-icon-button color="primary" [routerLink]="['/admin/tickets/edit', item.id]" aria-label="Editar">
+            <mat-icon>edit</mat-icon>
+          </a>
+          <button mat-icon-button color="warn" type="button" (click)="deleteTicket(item)" aria-label="Eliminar">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator
+      [length]="totalElements"
+      [pageIndex]="pageIndex"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="[1, 5, 10, 20]"
+      (page)="changePage($event)">
+    </mat-paginator>
+  </div>
+}
